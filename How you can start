@@ -1,0 +1,35 @@
+# wich packets from RDkit i use:
+import os 
+from __future__ import print_function
+from rdkit import Chem
+import pandas as pd
+from rdkit.Chem import PandasTools
+from rdkit import DataStructs
+from rdkit.Chem.Draw import IPythonConsole
+from rdkit.Chem import Draw
+import os
+from rdkit.Chem import AllChem
+from rdkit.Chem.inchi import MolFromInchi
+from rdkit.Chem.inchi import MolToInchi
+
+
+#Then, i obtain "SMILES" from "INCHI" to all my "inchi" column, in two steps; creating a function like this:
+#my dataframe name was "inmunotoxicos" and my "INCHI" columns name was "inchi":
+
+def fxy(mol):
+    print(mol)
+    return Chem.MolToSmiles()
+    
+print(Chem.MolToSmiles(MolFromInchi(inmunotoxicos["inchi"][0])))
+inmunotoxicos['mol']
+# and finally i could convert my "mol" to SMILES, because you can't do that from inchi directly (i don't know why?¿)
+#for that i create anther function:
+#functionname was: porfavorlicydejateExplicar, and the variable name was: molcomoquierallamarse ... 
+def porfavorlicydejateExplicar(molcomoquierallamarse):
+#     print(molcomoquierallamarse)
+    if molcomoquierallamarse is not None and not isinstance(molcomoquierallamarse, float):
+        return Chem.MolToSmiles(molcomoquierallamarse)
+    else:
+        return "XXX"
+# and then i apply this function to my "mol" column, and i create another column named "SMILES"
+inmunotoxicos["SMILES"]=inmunotoxicos.apply(lambda x: porfavorlicydejateExplicar(x['mol']), axis=1)
